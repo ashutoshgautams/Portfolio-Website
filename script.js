@@ -16,6 +16,11 @@ function initTheme() {
     const themeToggle = document.getElementById('themeToggle');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     
+    if (!themeToggle) {
+        console.error('Theme toggle button not found!');
+        return;
+    }
+    
     // Load saved theme or use system preference
     const savedTheme = localStorage.getItem('theme');
     const initialTheme = savedTheme || (prefersDark.matches ? 'dark' : 'light');
@@ -26,6 +31,8 @@ function initTheme() {
     themeToggle.addEventListener('click', function(e) {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        console.log('Theme toggle clicked. Current:', currentTheme, 'New:', newTheme);
         
         // Create elegant transition effect
         createThemeTransition(e);
@@ -84,6 +91,9 @@ function setTheme(theme) {
     if (metaThemeColor) {
         metaThemeColor.content = theme === 'dark' ? '#0f0f0f' : '#fdfcfb';
     }
+    
+    // Debug log
+    console.log('Theme changed to:', theme);
 }
 
 // Professional Navigation
@@ -151,11 +161,9 @@ function updateActiveNavLink() {
 // Enhanced Typing Animation
 function initTypingAnimation() {
     const roles = [
-        'Digital Artisan',
-        'Creative Developer', 
-        'UI/UX Designer',
-        'Frontend Specialist',
-        'Problem Solver'
+        'Lead Senior Consultant (Cyber Security)',
+       
+        
     ];
     
     const roleElement = document.getElementById('roleText');
